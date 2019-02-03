@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using AltQuery.Models.Configuration;
 using AltQuery.Models.Search;
 
@@ -12,6 +13,6 @@ namespace AltQuery.Services.Interfaces
 
         AltQueryOptions GetAltQueryOptions();
 
-
+        void AddReferences(IEnumerable<Assembly> assemblies);
     }
 }

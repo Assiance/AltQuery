@@ -110,6 +110,17 @@ namespace AltQuery.Services
             return AltQueryOptions.Clone() as AltQueryOptions;
         }
 
+        public void AddReferences(IEnumerable<Assembly> assemblies)
+        {
+            if (assemblies == null)
+            {
+                throw new ArgumentNullException(nameof(assemblies));
+            }
+
+            AltQueryOptions.Assemblies = AltQueryOptions.Assemblies.Concat(assemblies).Distinct().ToList();
+            _scriptService.AddReferences(AltQueryOptions.Assemblies.ToArray());
+        }
+
         private void AddAssembliesViaOptions()
         {
             if (AltQueryOptions.GetCallingAssemblyOnInit)
@@ -117,7 +128,7 @@ namespace AltQuery.Services
                 AltQueryOptions.Assemblies.Add(GetInitialAssembly());
             }
 
-            _scriptService.AddReferences(AltQueryOptions.Assemblies.ToArray());
+            AddReferences(AltQueryOptions.Assemblies.ToArray());
         }
 
         private void WarmScriptEngineViaOptions()
