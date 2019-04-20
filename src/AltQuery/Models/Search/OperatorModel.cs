@@ -8,6 +8,6 @@
 
         public string Grouping { get; set; }
 
-        public bool ApplyNegation { get; set; }
+        public string Negation { get; set; }
     }
 }

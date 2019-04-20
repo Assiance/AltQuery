@@ -4,6 +4,13 @@ namespace AltQuery.Models.Search
 {
     public class SearchModel
     {
-        public IEnumerable<FilterOption> FilterOptions { get; set; }
+        public const string SearchPrefix = "AltQueryObject";
+
+        public IList<FilterOption> FilterOptions { get; set; }
+
+        public SearchModel()
+        {
+            FilterOptions = new List<FilterOption>();
+        }
     }
 }
